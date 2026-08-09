@@ -4,7 +4,9 @@ import Login from './components/account/Login'
 const App = () => {
   return (
     <>
-    <Login/>  
+    <div style={{marginTop:'60px'}}>
+      <Login/> 
+      </div> 
     </>
   )
 }
