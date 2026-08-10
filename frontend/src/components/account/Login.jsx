@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import {Box, Button, styled,Typography} from '@mui/material';
 import TextField from '@mui/material/TextField';
+import axios from 'axios';
 
 
 
@@ -44,6 +45,9 @@ const Login = () => {
     function submitsignup(){
       // e.preventDefault()
       console.log(signupdata);
+      axios.post('http://localhost:5000/user',signupdata)
+      .then(res=>alert('data inserted'))
+      .catch(err=>console.log(err))
       
     }
 
