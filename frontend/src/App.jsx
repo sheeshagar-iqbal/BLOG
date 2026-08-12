@@ -2,18 +2,21 @@ import React from 'react'
 import Login from './components/account/Login'
 import { Route, Routes } from 'react-router-dom'
 import Show from './components/show/Show'
-
+import Dataprovide from './context/Dataprovide'
+import Home from './components/home/Home'
+import Header from './components/header/Header'
 const App = () => {
   return (
     <>
-    {/* <div style={{marginTop:'60px'}}>
-      <Login/> 
-      </div>  */}
-
-      <Routes>
-        <Route path='/' element={<Login/>}/>
-        <Route path='/show' element={<Show/>}/>
+      <Dataprovide>
+        <Header/>
+         <Routes>
+        <Route path='/login' element={<Login/>}/>
+        <Route path='/' element={<Home/>}/>
       </Routes>
+      </Dataprovide>
+
+     
     </>
   )
 }

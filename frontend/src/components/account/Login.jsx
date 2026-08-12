@@ -2,7 +2,9 @@ import React, { useState } from 'react'
 import {Box, Button, styled,Typography} from '@mui/material';
 import TextField from '@mui/material/TextField';
 import axios from 'axios';
-
+import { useContext } from 'react';
+import {Usercontext} from '../../context/Dataprovide'
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -33,25 +35,28 @@ const Login = () => {
   const [login,togglelogin]=useState('login')
   const [signupdata,setSignupdata]=useState({})
   const [user,setUser]=useState({})
+  const {SetAccount}=useContext(Usercontext)
+  const navigate= useNavigate()
     const imageURL ='https://tse4.mm.bing.net/th/id/OIP.-13b2HDEo9NYyv0QpDMktQHaE7?r=0&pid=Api&P=0&h=180'
    
 
 
     function changehandler(e){
             setSignupdata({...signupdata,[e.target.name]:e.target.value})
-            console.log(e.target.name,e.target.value);
+            // console.log(e.target.name,e.target.value);
             
     }
 
     function submitsignup(e){
       e.preventDefault()
       if(login==='login'){
-        console.log("hi");
+        // console.log("hi");
         
        axios.post('http://localhost:5000/login/user',signupdata)
       .then(res=>{setUser(res.data)
         // console.log(res.data);
-        
+          SetAccount({email:user.data.email,username:user.data.username})
+          navigate('/')
       })
       .catch(err=>console.log(err))
       // console.log(user.message);
@@ -68,6 +73,8 @@ const Login = () => {
 
   return (
     <>
+    <div style={{marginTop:'60px'}}>
+
      <Component>
       <Box>
         <Image src={imageURL} alt="Login" />
@@ -95,6 +102,7 @@ const Login = () => {
 }
         </Box>
     </Component>
+    </div>
     </>
   )
 }
