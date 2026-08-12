@@ -34,8 +34,8 @@ const Login = () => {
 
   const [login,togglelogin]=useState('login')
   const [signupdata,setSignupdata]=useState({})
-  const [user,setUser]=useState({})
-  const {SetAccount}=useContext(Usercontext)
+  const [user,setUserdata]=useState({})
+  const {SetAccount,setUser}=useContext(Usercontext)
   const navigate= useNavigate()
     const imageURL ='https://tse4.mm.bing.net/th/id/OIP.-13b2HDEo9NYyv0QpDMktQHaE7?r=0&pid=Api&P=0&h=180'
    
@@ -53,14 +53,18 @@ const Login = () => {
         // console.log("hi");
         
        axios.post('http://localhost:5000/login/user',signupdata)
-      .then(res=>{setUser(res.data)
-        // console.log(res.data);
-          SetAccount({email:user.data.email,username:user.data.username})
-          navigate('/')
+      .then(res=>{setUserdata(res.data)
+        console.log(res.data);
+       
       })
       .catch(err=>console.log(err))
       // console.log(user.message);
-      
+       console.log(user);
+        
+          SetAccount({email:user.data?.email,username:user.data?.username})
+          setUser(user)
+          navigate('/')
+
       }else{
       // console.log(signupdata);
       axios.post('http://localhost:5000/user',signupdata)

@@ -7,6 +7,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { Link } from 'react-router-dom';
 
 const cateory =[
     {id:0,type:'All'},
@@ -33,7 +34,9 @@ box-shadow: inset 1px 1px  rgb(8, 26, 92)
 const Category = () => {
   return (
     <>
+    <Link to='/create' style={{width:'85%',marginLeft:'5%'}}>
     <Styledbuuton>Create Blog</Styledbuuton>
+    </Link>
     <Styledtable>
         <TableHead>
             <TableRow>
