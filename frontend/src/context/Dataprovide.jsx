@@ -6,11 +6,11 @@ import { useContext } from 'react'
 export    const Usercontext =createContext(null)
  
 const Dataprovide = ({children}) => {
-    const [account,SetAccount]=useState({username:'',email:''})
+    const [account,setAccount]=useState({username:'',email:'',id:''})
     const [user,setUser] =useState(false)
   return (
     <>
-    <Usercontext.Provider value={{account,SetAccount,user,setUser}}>
+    <Usercontext.Provider value={{account,setAccount,user,setUser}}>
      {children}
     </Usercontext.Provider>
     </>

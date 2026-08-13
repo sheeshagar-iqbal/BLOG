@@ -4,6 +4,7 @@ import { useContext } from 'react'
 import Bannner from '../banner/Bannner'
 import Category from './Category'
 import { Grid } from '@mui/material'
+import Post from '../show/Post'
 
 const Home = () => {
     const {account}=useContext(Usercontext)
@@ -17,7 +18,7 @@ const Home = () => {
     <Category/>
     </Grid>
     <Grid container  lg={10} sm={10} xs={12}>
-        post
+        <Post/>
     </Grid>
    </Grid>
     </>

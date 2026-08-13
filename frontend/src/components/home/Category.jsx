@@ -10,7 +10,7 @@ import Paper from '@mui/material/Paper';
 import { Link } from 'react-router-dom';
 
 const cateory =[
-    {id:0,type:'All'},
+    // {id:0,type:'All'},
     {id:1,type:'Music'},
     {id:2,type:'Tech'},
     {id:3,type:'Movies'},
@@ -41,7 +41,9 @@ const Category = () => {
         <TableHead>
             <TableRow>
                 <TableCell>
+                    <Link to='/' style={{textDecoration:'none', color:'black'}}>
                     All Category
+                    </Link>
                 </TableCell>
             </TableRow>
         </TableHead>
@@ -49,7 +51,9 @@ const Category = () => {
            {cateory.map((e)=>(
              <TableRow key={e.id}>
                 <TableCell>
+                    <Link to={`/?category=${e.type}` } style={{textDecoration:'none', color:'black'}}>
                     {e.type}
+                    </Link>
                 </TableCell>
             </TableRow>
            ))}
