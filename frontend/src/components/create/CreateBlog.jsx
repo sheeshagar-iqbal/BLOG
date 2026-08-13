@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 
 import { Usercontext } from "../../context/Dataprovide";
+import axios from "axios";
 
 const Image = styled("img")({
   height: "50vh",
@@ -57,17 +58,22 @@ const CreateBlog = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-  console.log(user);
-  console.log(account);
+  // console.log(user);
+  // console.log(account);
   
     // Date + User ID automatically add
     const blogData = {
       ...formData,
       nowdate: new Date(),
-      userId: user?._id,
+      user: user?._id,
+      username: user?.username,
     };
 
-    console.log("Blog Data:", blogData,user);
+    axios.post("http://localhost:5000/blog", blogData)
+        .then((res) => alert("blog inserted"))
+        .catch((err) => console.log(err));
+
+    console.log("Blog Data:", blogData);
   };
 
   return (
@@ -154,7 +160,7 @@ const CreateBlog = () => {
             {category.map((item) => (
               <MenuItem
                 key={item.id}
-                value={item.id}
+                value={item.type}
               >
                 {item.type}
               </MenuItem>
