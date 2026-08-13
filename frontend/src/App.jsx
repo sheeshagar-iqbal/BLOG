@@ -9,6 +9,7 @@ import About from "./components/home/About";
 import Info from "./components/home/Info";
 import Profile from "./components/home/Profile";
 import MyAccount from "./components/home/MyAccount";
+import BlogCardDetails from "./components/show/BlogCardDetails";
 const App = () => {
   return (
     <>
@@ -24,6 +25,8 @@ const App = () => {
         {/* <Route path="/create"> */}
           <Route path="/create" element={<CreateBlog />} />
         {/* </Route> */}
+        <Route path="/blog/:id"  element={<BlogCardDetails />}
+/>
       </Routes>
     </>
   );

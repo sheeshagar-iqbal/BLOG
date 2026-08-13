@@ -9,6 +9,7 @@ import {
 
 import { Usercontext } from "../../context/Dataprovide";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Image = styled("img")({
   height: "50vh",
@@ -36,7 +37,7 @@ const category = [
 const CreateBlog = () => {
 
   const { user,account } = useContext(Usercontext);
-
+  const navigate = useNavigate()
   const defaultImage =
     "https://images.unsplash.com/photo-1543128639-4cb7e6eeef1b?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bGFwdG9wJTIwc2V0dXB8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80";
 
@@ -74,6 +75,7 @@ const CreateBlog = () => {
         .catch((err) => console.log(err));
 
     console.log("Blog Data:", blogData);
+    navigate('/')
   };
 
   return (
