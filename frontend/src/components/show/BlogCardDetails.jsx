@@ -1,26 +1,47 @@
-import React, { useEffect, useState } from "react";
-import { Box, Typography, Chip, CircularProgress } from "@mui/material";
-
+import React, { useContext, useEffect, useState } from "react";
+import { Box, Typography, Chip, CircularProgress, colors } from "@mui/material";
+import DeleteOutlineTwoToneIcon from '@mui/icons-material/DeleteOutlineTwoTone';
+// import CheckBoxTwoToneIcon from '@mui/icons-material/CheckBoxTwoTone';
+import SecurityUpdateGoodTwoToneIcon from '@mui/icons-material/SecurityUpdateGoodTwoTone';
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { Usercontext } from "../../context/Dataprovide";
+
 
 const BlogCardDetails = () => {
   const { id } = useParams();
-
+  const {account}= useContext(Usercontext)
   const [blog, setBlog] = useState(null);
+  const navigate = useNavigate()
 
+  const deleteblog =()=>{
+     axios
+      .delete(`http://localhost:5000/blog/${id}`)
+      .then((res) => {
+        alert(`delete ${blog.title} blog `)
+        navigate('/')
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
   useEffect(() => {
     axios
       .get(`http://localhost:5000/blog/${id}`)
       .then((res) => {
-        console.log(res.data);
-
+        // console.log(res.data);
+        // console.log(account);
+        
         setBlog(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [id]);
+
+
+
+
+  }, [id,account.id]);
 
   if (!blog) {
     return (
@@ -56,6 +77,26 @@ const BlogCardDetails = () => {
           borderRadius: 3,
         }}
       />
+ {/* update and trash */}
+     {
+      (blog.user === account.id)?
+         <Box 
+      sx={{
+        display:"flex",
+        justifyContent:"end",
+        marginTop:'20px'
+      }}
+      >
+        <SecurityUpdateGoodTwoToneIcon style={{color:'black',fontSize:'1.7rem',cursor:'pointer'}}
+         onClick={()=>navigate(`/updateblog/${blog._id}`)}
+
+         />
+       <DeleteOutlineTwoToneIcon style={{color:'red',fontSize:'1.7rem',cursor:'pointer'}} 
+       onClick={deleteblog}
+       />
+      </Box>: ''
+      
+     }
 
       {/* Category + User */}
       <Box

@@ -5,9 +5,13 @@ import Bannner from "../banner/Bannner";
 import Category from "./Category";
 import { Grid ,Typography } from "@mui/material";
 import BlogAll from "../show/BlogAll";
+import { useParams, useSearchParams } from "react-router-dom";
 
 const Home = () => {
   const { account } = useContext(Usercontext);
+  // const {category}= useParams()
+   const [searchParams] = useSearchParams();
+  const category = searchParams.get("category");
   return (
     <>
       <h2>{account.email}</h2>
@@ -21,10 +25,10 @@ const Home = () => {
 
   <Grid size={{ xs: 12, sm: 9, md: 9, lg: 10 }} spacing={5}>
     <Typography variant="h4" sx={{ m: 3 }}>
-      New Blog
+       {category ? `${category} Blogs` : "New Blog"} 
     </Typography>
 
-    <BlogAll />
+    <BlogAll category={category} />
   </Grid>
 
 </Grid>

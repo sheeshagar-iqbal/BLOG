@@ -3,7 +3,7 @@ import { Box, Grid } from "@mui/material";
 import BlogCard from "./BlogCard";
 import axios from "axios";
 
-const BlogAll = () => {
+const BlogAll = ({category}) => {
 
   const [blogs,setBlogs]=useState([])
 
@@ -12,6 +12,13 @@ const BlogAll = () => {
         .then((res) => setBlogs(res.data))
         .catch((err) => console.log(err));
   },[])
+
+    const filterBlogs = category
+    ? blogs.filter(
+        (blog) =>
+          blog.category.toLowerCase() === category.toLowerCase()
+      )
+    : blogs;
   return (
     <Box
       sx={{
@@ -23,13 +30,13 @@ const BlogAll = () => {
       }}
     >
       <Grid container spacing={2}>
-      {blogs.map((blog, index) => (
-        <Grid  size={{lg:4, md:6, sm:6, xs:12}} key={blog._id}>
+      {filterBlogs.map((blog, index) => (
+      (index<6)? <Grid  size={{lg:4, md:6, sm:6, xs:12}} key={blog._id}>
         <BlogCard
           key={index}
           blog={blog}
         />
-        </Grid>
+        </Grid>:null
       ))}
       </Grid>
     </Box>
