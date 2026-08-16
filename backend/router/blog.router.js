@@ -7,7 +7,6 @@ const router =express.Router()
 
 router.post('/blog',postblog)
 router.get('/blog',getblog)
-// router.get('/user/sort',)
 router.get('/blog/:id',getblogbyid)
 router.put('/blog/:id',putblog)
 router.delete('/blog/:id',deleteblog)

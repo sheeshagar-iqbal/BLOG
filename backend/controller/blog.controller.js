@@ -1,14 +1,6 @@
 const blogmodel= require('../model/blog.model')
-const bcrypt =require('bcryptjs')
 
 
-
-
-
-
-
-
-// signup 
  async function postblog(req,res){
             let data =await blogmodel.create(req.body)
             res.json(data)

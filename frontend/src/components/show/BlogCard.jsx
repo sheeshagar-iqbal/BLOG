@@ -20,7 +20,7 @@ const BlogCard = ({ blog }) => {
     <Card
     onClick={openBlog}
       sx={{
-        width: 350,
+        width: 340,
         borderRadius: 3,
         overflow: "hidden",
         boxShadow: 3,

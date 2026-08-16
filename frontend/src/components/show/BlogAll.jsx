@@ -31,7 +31,7 @@ const BlogAll = ({category}) => {
     >
       <Grid container spacing={2}>
       {filterBlogs.map((blog, index) => (
-      (index<6)? <Grid  size={{lg:4, md:6, sm:6, xs:12}} key={blog._id}>
+      (index<6)? <Grid  size={{lg:4, md:6, sm:8, xs:12}} key={blog._id}>
         <BlogCard
           key={index}
           blog={blog}
