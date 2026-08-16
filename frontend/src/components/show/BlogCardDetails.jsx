@@ -6,6 +6,8 @@ import SecurityUpdateGoodTwoToneIcon from '@mui/icons-material/SecurityUpdateGoo
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { Usercontext } from "../../context/Dataprovide";
+import Comment from "../comment/Comment";
+import ShowComment from "../comment/ShowComment";
 
 
 const BlogCardDetails = () => {
@@ -58,6 +60,7 @@ const BlogCardDetails = () => {
   }
 
   return (
+    <>
     <Box
       sx={{
         maxWidth: "900px",
@@ -126,7 +129,22 @@ const BlogCardDetails = () => {
       >
         {blog.description}
       </Typography>
+      <Box
+      sx={{
+        margin:'20px 0'
+      }}>
+        {
+          (account.id)?
+          <Comment blog={blog} account={account} />
+          : null
+        }
+      
+    <ShowComment blog={blog} account={account}/>
     </Box>
+    </Box>
+
+    
+    </>
   );
 };
 
