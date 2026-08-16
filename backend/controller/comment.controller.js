@@ -7,7 +7,7 @@ const commentmodel= require('../model/comment.model')
 }
 
  async function getcomment(req,res){
-             console.log(req.query.comment);
+            //  console.log(req.query.comment);
              
             let data = await commentmodel.find({blog:req.query.comment})
             res.json(data)

@@ -22,7 +22,7 @@ const Comment = ({blog,account}) => {
   };
 
   const submitHandler = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
 
     const comData = {
       ...commentData,
@@ -34,11 +34,13 @@ const Comment = ({blog,account}) => {
     console.log(account);
     
     axios.post("http://localhost:5000/comment", comData)
-        .then((res) => alert("comment inserted"))
+        .then((res) => {alert("comment inserted")
+    navigate(`/blog/${blog._id}`)
+
+        })
         .catch((err) => console.log(err));
 
     console.log("comment Data:", comData);
-    navigate(`/blog/${blog._id}`)
     
   };
   useEffect(()=>{
